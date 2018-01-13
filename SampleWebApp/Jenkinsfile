@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh '''cd "$(find . -name pom.xml -type f -printf '%h' -quit)"'''
+                sh 'cd "$(dirname "$(find . -type f -name pom.xml | head -1)")"'
                 sh 'mvn -B -DskipTests clean package' 
             }
         }
